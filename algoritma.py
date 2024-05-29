@@ -1,43 +1,63 @@
-class ExpertSystem:
-    def __init__(self):
-        pass
-    
-    def classify(self, prestasi, jaminan, pekerjaan):
-        if jaminan == 'Logam Mulia':
-            return 'Kelas Mikro'
-        elif jaminan == 'BPKB':
-            if pekerjaan == 'Swasta':
-                return 'Kelas Sedang'
-            elif pekerjaan == 'Wirausaha':
-                if prestasi == 'Baik':
-                    return 'Kelas Atas'
-                elif prestasi == 'Bermasalah':
-                    return 'Kelas Mikro'
-        elif jaminan == 'Sertifikat HM':
-            if pekerjaan == 'PNS':
-                return 'Kelas Atas'
-            elif pekerjaan == 'Swasta':
-                if prestasi == 'Baik':
-                    return 'Kelas Atas'
-                elif prestasi == 'Bermasalah':
-                    return 'Kelas Sedang'
-        return 'Keputusan tidak dapat dibuat'
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import LabelEncoder
 
-# Buat instance dari ExpertSystem
-expert_system = ExpertSystem()
-
-# Contoh input
-input_data = [
-    {'prestasi': 'Baik', 'jaminan': 'Logam Mulia', 'pekerjaan': 'PNS'},
-    {'prestasi': 'Bermasalah', 'jaminan': 'BPKB', 'pekerjaan': 'Swasta'},
-    {'prestasi': 'Baik', 'jaminan': 'BPKB', 'pekerjaan': 'Wirausaha'},
-    {'prestasi': 'Bermasalah', 'jaminan': 'Sertifikat HM', 'pekerjaan': 'Swasta'},
+# Data pelatihan
+data = [
+    ['Baik', 'Logam Mulia', 'PNS', 'Kelas Mikro'],
+    ['Bermasalah', 'BPKB', 'Swasta', 'Kelas Sedang'],
+    ['Baik', 'BPKB', 'Wirausaha', 'Kelas Atas'],
+    ['Bermasalah', 'BPKB', 'Wirausaha', 'Kelas Mikro'],
+    ['Baik', 'Sertifikat HM', 'PNS', 'Kelas Atas'],
+    ['Baik', 'Sertifikat HM', 'Swasta', 'Kelas Atas'],
+    ['Bermasalah', 'Sertifikat HM', 'Swasta', 'Kelas Sedang']
 ]
 
-# Klasifikasikan setiap input
-for data in input_data:
-    prestasi = data['prestasi']
-    jaminan = data['jaminan']
-    pekerjaan = data['pekerjaan']
-    hasil = expert_system.classify(prestasi, jaminan, pekerjaan)
-    print(f"Prestasi: {prestasi}, Jaminan: {jaminan}, Pekerjaan: {pekerjaan} -> Tingkat Kelas: {hasil}")
+# Pisahkan fitur dan label
+X = np.array([row[:-1] for row in data])
+y = np.array([row[-1] for row in data])
+
+# LabelEncoder untuk mengonversi data kategori ke numerik
+le_prestasi = LabelEncoder()
+le_jaminan = LabelEncoder()
+le_pekerjaan = LabelEncoder()
+le_kelas = LabelEncoder()
+
+X[:, 0] = le_prestasi.fit_transform(X[:, 0])
+X[:, 1] = le_jaminan.fit_transform(X[:, 1])
+X[:, 2] = le_pekerjaan.fit_transform(X[:, 2])
+y = le_kelas.fit_transform(y)
+
+# Inisialisasi dan latih DecisionTreeClassifier dengan kriteria 'entropy'
+clf = DecisionTreeClassifier(criterion='entropy')
+clf.fit(X, y)
+
+# Buat instance dari LabelEncoder untuk input manual
+input_le_prestasi = LabelEncoder()
+input_le_jaminan = LabelEncoder()
+input_le_pekerjaan = LabelEncoder()
+
+input_le_prestasi.classes_ = le_prestasi.classes_
+input_le_jaminan.classes_ = le_jaminan.classes_
+input_le_pekerjaan.classes_ = le_pekerjaan.classes_
+
+# Fungsi untuk mendapatkan input manual
+def get_user_input():
+    prestasi = input("Masukkan prestasi (Baik/Bermasalah): ")
+    jaminan = input("Masukkan jaminan (Sertifikat HM/BPKB/Logam Mulia): ")
+    pekerjaan = input("Masukkan pekerjaan (PNS/Swasta/Wirausaha): ")
+    return prestasi, jaminan, pekerjaan
+
+# Meminta input dari pengguna
+prestasi, jaminan, pekerjaan = get_user_input()
+
+# Konversi input pengguna ke numerik
+prestasi_num = input_le_prestasi.transform([prestasi])[0]
+jaminan_num = input_le_jaminan.transform([jaminan])[0]
+pekerjaan_num = input_le_pekerjaan.transform([pekerjaan])[0]
+
+# Prediksi menggunakan model decision tree
+prediksi_num = clf.predict([[prestasi_num, jaminan_num, pekerjaan_num]])
+prediksi = le_kelas.inverse_transform(prediksi_num)
+
+print(f"Prestasi: {prestasi}, Jaminan: {jaminan}, Pekerjaan: {pekerjaan} -> Nasabah Tingkat : {prediksi[0]}")
