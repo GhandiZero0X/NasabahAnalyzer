@@ -15,11 +15,12 @@ NasabahAnalyzer adalah proyek untuk melakukan analisis kelayakan kredit nasabah 
 
 1. Jalankan `algoritma.py` untuk melakukan klasifikasi berdasarkan input manual dari pengguna.
 2. Ikuti instruksi yang ditampilkan untuk memasukkan data prestasi, jaminan, dan pekerjaan nasabah.
-3. Program akan memberikan prediksi kelas kelayakan kredit nasabah.
+3. Program akan memberikan prediksi kelas kelayakan kredit nasabah dan menampilkan gambar decision tree dalam pop-up.
 
 ## Struktur Proyek
 
 - `algoritma.py`: File utama untuk menjalankan analisis klasifikasi dan menampilkan hasil.
+- `ImageTree.py`: File untuk menampilkan gambar decision tree dalam pop-up.
 - `requirements.txt`: Daftar dependencies proyek.
 
 ## Kontribusi
