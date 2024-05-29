@@ -1,6 +1,6 @@
 # algoritma.py
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
 from ImageTree import show_tree_image
 
