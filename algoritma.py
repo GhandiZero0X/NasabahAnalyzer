@@ -8,8 +8,8 @@ from ImageTree import show_tree_image
 data = [
     ['Baik', 'Logam Mulia', 'PNS', 'Kelas Mikro'],
     ['Bermasalah', 'BPKB', 'Swasta', 'Kelas Sedang'],
-    ['Baik', 'BPKB', 'Wirausaha', 'Kelas Atas'],
-    ['Bermasalah', 'BPKB', 'Wirausaha', 'Kelas Mikro'],
+    ['Baik', 'BPKB', 'Wiraswasta', 'Kelas Atas'],
+    ['Bermasalah', 'BPKB', 'Wiraswasta', 'Kelas Mikro'],
     ['Baik', 'Sertifikat HM', 'PNS', 'Kelas Atas'],
     ['Baik', 'Sertifikat HM', 'Swasta', 'Kelas Atas'],
     ['Bermasalah', 'Sertifikat HM', 'Swasta', 'Kelas Sedang']
@@ -57,7 +57,7 @@ input_le_pekerjaan.classes_ = le_pekerjaan.classes_
 def get_user_input():
     prestasi = input("Masukkan prestasi (Baik/Bermasalah): ")
     jaminan = input("Masukkan jaminan (Sertifikat HM/BPKB/Logam Mulia): ")
-    pekerjaan = input("Masukkan pekerjaan (PNS/Swasta/Wirausaha): ")
+    pekerjaan = input("Masukkan pekerjaan (PNS/Swasta/Wiraswasta): ")
     return prestasi, jaminan, pekerjaan
 
 # Meminta input dari pengguna
