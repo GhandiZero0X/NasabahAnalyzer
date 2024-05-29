@@ -15,6 +15,16 @@ data = [
     ['Bermasalah', 'Sertifikat HM', 'Swasta', 'Kelas Sedang']
 ]
 
+# data = [
+#     ["Baik", "Logam Mulia", "Swasta", "Kelas Mikro"],
+#     ["Bermasalah", "BPKB", "Wiraswasta", "Kelas Mikro"],
+#     ["Baik", "Sertifikat HM", "Swasta", "Kelas Mikro"],
+#     ["Bermasalah", "BPKB", "Wiraswasta", "Kelas Mikro"],
+#     ["Baik", "Sertifikat HM", "PNS", "Kelas Atas"],
+#     ["Baik", "Sertifikat HM", "Swasta", "Kelas Atas"],
+#     ["Bermasalah", "Sertifikat HM", "Swasta", "Kelas Sedang"],
+# ]
+
 # Pisahkan fitur dan label
 X = np.array([row[:-1] for row in data])
 y = np.array([row[-1] for row in data])
