@@ -1,6 +1,8 @@
+# algoritma.py
 import numpy as np
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.preprocessing import LabelEncoder
+from ImageTree import show_tree_image
 
 # Data pelatihan
 data = [
@@ -61,3 +63,6 @@ prediksi_num = clf.predict([[prestasi_num, jaminan_num, pekerjaan_num]])
 prediksi = le_kelas.inverse_transform(prediksi_num)
 
 print(f"Prestasi: {prestasi}, Jaminan: {jaminan}, Pekerjaan: {pekerjaan} -> Nasabah Tingkat : {prediksi[0]}")
+
+# Tambahkan baris berikut untuk menampilkan gambar decision tree dalam pop-up
+show_tree_image(clf, ['Prestasi', 'Jaminan', 'Pekerjaan'], ['Kelas Mikro', 'Kelas Sedang', 'Kelas Atas'])
