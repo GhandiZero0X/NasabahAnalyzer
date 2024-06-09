@@ -5,15 +5,36 @@ from sklearn.preprocessing import LabelEncoder
 from ImageTree import show_tree_image
 
 # Data pelatihan
-data = [
-    ['Baik', 'Logam Mulia', 'PNS', 'Kelas Mikro'],
-    ['Bermasalah', 'BPKB', 'Swasta', 'Kelas Sedang'],
-    ['Baik', 'BPKB', 'Wiraswasta', 'Kelas Atas'],
-    ['Bermasalah', 'BPKB', 'Wiraswasta', 'Kelas Mikro'],
-    ['Baik', 'Sertifikat HM', 'PNS', 'Kelas Atas'],
-    ['Baik', 'Sertifikat HM', 'Swasta', 'Kelas Atas'],
-    ['Bermasalah', 'Sertifikat HM', 'Swasta', 'Kelas Sedang']
-]
+# data = [
+#     ['Baik', 'Logam Mulia', 'PNS', 'Kelas Mikro'],
+#     ['Bermasalah', 'BPKB', 'Swasta', 'Kelas Sedang'],
+#     ['Baik', 'BPKB', 'Wiraswasta', 'Kelas Atas'],
+#     ['Bermasalah', 'BPKB', 'Wiraswasta', 'Kelas Mikro'],
+#     ['Baik', 'Sertifikat HM', 'PNS', 'Kelas Atas'],
+#     ['Baik', 'Sertifikat HM', 'Swasta', 'Kelas Atas'],
+#     ['Bermasalah', 'Sertifikat HM', 'Swasta', 'Kelas Sedang']
+# ]
+
+# data = [
+#     ['Baik', 'BPKB', 'Wiraswasta', 'Kelas Atas'],
+#     ['Bermasalah', 'BPKB', 'Wiraswasta', 'Kelas Mikro'],
+#     ['Baik', 'BPKB', 'Swasta', 'Kelas Sedang'],
+#     ['Bermasalah', 'BPKB', 'Swasta', 'Kelas Sedang'],
+#     ['Baik', 'BPKB', 'PNS', 'Kelas Atas'],
+#     ['Bermasalah', 'BPKB', 'PNS', 'Kelas Sedang'],
+#     ['Baik', 'Logam Mulia', 'Swasta', 'Kelas Mikro'],
+#     ['Baik', 'Logam Mulia', 'Wiraswasta', 'Kelas Mikro'],
+#     ['Baik', 'Logam Mulia', 'PNS', 'Kelas Mikro'],
+#     ['Bermasalah', 'Logam Mulia', 'Swasta', 'Kelas Mikro'],
+#     ['Bermasalah', 'Logam Mulia', 'Wiraswasta', 'Kelas Mikro'],
+#     ['Bermasalah', 'Logam Mulia', 'PNS', 'Kelas Mikro'],
+#     ['Baik', 'Sertifikat HM', 'PNS', 'Kelas Atas'],
+#     ['Bermasalah', 'Sertifikat HM', 'PNS', 'Kelas Atas'],
+#     ['Baik', 'Sertifikat HM', 'Swasta', 'Kelas Atas dan Sedang'],
+#     ['Bermasalah', 'Sertifikat HM', 'Swasta', 'Kelas Sedang'],
+#     ['Baik', 'Sertifikat HM', 'Wiraswasta', 'Kelas Atas'],
+#     ['Bermasalah', 'Sertifikat HM', 'Wiraswasta', 'Kelas Sedang'],
+# ]
 
 # data = [
 #     ["Baik", "Logam Mulia", "Swasta", "Kelas Mikro"],
@@ -75,4 +96,4 @@ prediksi = le_kelas.inverse_transform(prediksi_num)
 print(f"Prestasi: {prestasi}, Jaminan: {jaminan}, Pekerjaan: {pekerjaan} -> Nasabah Tingkat : {prediksi[0]}")
 
 # Tambahkan baris berikut untuk menampilkan gambar decision tree dalam pop-up
-show_tree_image(clf, ['Prestasi', 'Jaminan', 'Pekerjaan'], ['Kelas Mikro', 'Kelas Sedang', 'Kelas Atas'])
+show_tree_image(clf, ['Prestasi', 'Jaminan', 'Pekerjaan'], ['Kelas Mikro', 'Kelas Sedang', 'Kelas Atas', 'Kelas Atas dan Sedang'])
